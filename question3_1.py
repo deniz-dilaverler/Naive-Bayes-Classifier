@@ -21,6 +21,8 @@ def get_category_counts(input_csv_path: str):
     category_counts = category_counts.sort_index()
 
     return category_counts
+
+
 def get_result_category_percentages(input_csv_path: str):
     category_counts = get_category_counts(input_csv_path)
 
@@ -28,14 +30,14 @@ def get_result_category_percentages(input_csv_path: str):
     percentages = [count / total_count for count in category_counts]
     labels = []
     for category_id in category_counts.index:
-        category_id = category_id[0] # for some reason, category_id is a tuple
+        category_id = category_id[0]  # for some reason, category_id is a tuple
         category_name = Categories(category_id).name
         labels.append(category_name)
 
-    return (labels, percentages)
+    return labels, percentages
 
 
-def get_category_distribution_pie_chart(input_csv_path:str):
+def get_category_distribution_pie_chart(input_csv_path: str):
     labels, percentages = get_result_category_percentages(input_csv_path)
     create_category_pie_chart(labels, percentages)
 
@@ -71,10 +73,10 @@ def get_usage_of_words(
 
 
 def question_3_1_d(
-    labels_path: str,
-    features_path: str,
-    category: Categories,
-    word: str
+        labels_path: str,
+        features_path: str,
+        category: Categories,
+        word: str
 ):
     labels = pd.read_csv(labels_path, header=None)
     features = pd.read_csv(features_path, delimiter=" ")
@@ -110,7 +112,7 @@ for word in words:
         word=word
     )
 
-#comment out one of the following lines to see the pie chart for
+# comment out one of the following lines to see the pie chart for
 # the training or testing set
-#get_category_distribution_pie_chart(y_train_csv_path)
-#get_category_distribution_pie_chart(y_test_csv_path)
+# get_category_distribution_pie_chart(y_train_csv_path)
+# get_category_distribution_pie_chart(y_test_csv_path)
