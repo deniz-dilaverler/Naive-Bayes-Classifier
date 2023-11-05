@@ -5,11 +5,6 @@ from matplotlib import pyplot as plt
 
 from labels import Categories
 
-y_train_csv_path = 'dataset/y_train.csv'
-y_test_csv_path = 'dataset/y_test.csv'
-
-x_test_csv_path = 'dataset/x_test.csv'
-x_train_csv_path = 'dataset/x_train.csv'
 
 def create_category_pie_chart(labels: list[str], percentages: list[float]):
     fig1, ax1 = plt.subplots()
@@ -43,12 +38,6 @@ def get_result_category_percentages(input_csv_path: str):
 def get_category_distribution_pie_chart(input_csv_path:str):
     labels, percentages = get_result_category_percentages(input_csv_path)
     create_category_pie_chart(labels, percentages)
-
-
-#comment out one of the following lines to see the pie chart for
-# the training or testing set
-#get_category_distribution_pie_chart(y_train_csv_path)
-#get_category_distribution_pie_chart(y_test_csv_path)
 
 
 def get_category_words(
@@ -104,6 +93,12 @@ def question_3_1_d(
     print(f"Logarithmic probability of '{word}': {logarithmic_probability}")
 
 
+y_train_csv_path = 'dataset/y_train.csv'
+y_test_csv_path = 'dataset/y_test.csv'
+
+x_test_csv_path = 'dataset/x_test.csv'
+x_train_csv_path = 'dataset/x_train.csv'
+
 words = ("alien", "thunder")
 category = Categories.TECH
 
@@ -114,3 +109,8 @@ for word in words:
         category=category,
         word=word
     )
+
+#comment out one of the following lines to see the pie chart for
+# the training or testing set
+#get_category_distribution_pie_chart(y_train_csv_path)
+#get_category_distribution_pie_chart(y_test_csv_path)
