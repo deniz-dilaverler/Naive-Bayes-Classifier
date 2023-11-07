@@ -35,14 +35,14 @@ def question_3_2():
     naive_bayes3_2.fit(x_train, y_train)
     error_rate = naive_bayes3_2.test(x_test, y_test)
 
-    print(f"Question3.2 error rate: {error_rate}")
+    print(f"Question3.2 accuracy: {error_rate}")
 
 def question3_3():
     naive_bayes3_3 = NaiveBayes3(a=1)
     naive_bayes3_3.fit(x_train, y_train)
     error_rate = naive_bayes3_3.test(x_test, y_test)
 
-    print(f"Question3.3 error rate: {error_rate}")
+    print(f"Question3.3 accuracy: {error_rate}")
 
 
 def main(argument_count):
