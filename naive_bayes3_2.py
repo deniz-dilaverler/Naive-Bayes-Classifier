@@ -111,14 +111,3 @@ class NaiveBayes2:
         print("Confusion Matrix")
         print(confusion_matrix)
         return correct / len(test_features)
-
-    def _estimate_word_probability(self, word_index: int, category: Categories) -> float:
-        # [0] is needed because for some reason np.where returns a tuple where the second
-        # element is an array of 0s
-        category_indices = np.where(self.labels == category.value)[0]
-        category_features = self.features[category_indices]
-
-        word_count = np.sum(category_features[:, word_index])
-
-        category_word_count = self.__get_category_word_count(category)
-        return word_count / category_word_count
