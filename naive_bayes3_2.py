@@ -16,10 +16,10 @@ class NaiveBayes2:
     category_estimates: dict[Categories, float]
     category_word_ln_percentages: np.ndarray
 
-    def __get_category_word_count(self, category: Categories) -> int:
+    def _get_category_word_count(self, category: Categories) -> int:
         return self.category_total_word_counts[category]
 
-    def __set_category_total_word_counts(self):
+    def _set_category_total_word_counts(self):
         self.category_total_word_counts = {}
 
         for category in Categories:
@@ -31,7 +31,7 @@ class NaiveBayes2:
             total_word_count = int(total_word_count)
             self.category_total_word_counts[category] = total_word_count
 
-    def __set_category_estimates(self):
+    def _set_category_estimates(self):
         self.category_estimates = {}
         total_count = np.sum(self.labels)
         for category in Categories:
@@ -40,7 +40,7 @@ class NaiveBayes2:
             category_count = int(category_count)
             self.category_estimates[category] = category_count / total_count
 
-    def __set_category_word_ln_percentages(self):
+    def _set_category_word_ln_percentages(self):
         self.category_word_ln_percentages = [None] * len(Categories)
         category_features = {}
         for category in Categories:
@@ -60,11 +60,11 @@ class NaiveBayes2:
         self.labels = labels
 
         print("Setting total words in each category...")
-        self.__set_category_total_word_counts()
+        self._set_category_total_word_counts()
         print("Set percentages of each category...")
-        self.__set_category_estimates()
+        self._set_category_estimates()
         print("Setting sum of words in each category...")
-        self.__set_category_word_ln_percentages()
+        self._set_category_word_ln_percentages()
 
     def predict(self, test_features: np.ndarray):
 
