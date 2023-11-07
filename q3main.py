@@ -4,6 +4,8 @@ import sys
 
 from naive_bayes3_2 import NaiveBayes2
 from naive_bayes3_3 import NaiveBayes3
+from naive_bayes3_4 import NaiveBayes4
+
 
 def get_features(csv_path: str) -> np.ndarray:
     input_data = pd.read_csv(csv_path, delimiter=" ").to_numpy()
@@ -45,13 +47,20 @@ def question3_3():
     print(f"Question3.3 accuracy: {error_rate}")
 
 
+def question3_4():
+    naive_bayes3_4 = NaiveBayes4(a=1)
+    naive_bayes3_4.fit(x_train, y_train)
+    error_rate = naive_bayes3_4.test(x_test, y_test)
+
+    print(f"Question3.4 accuracy: {error_rate}")
+
 def main(argument_count):
     if argument_count == 2:
         question_3_2()
     elif argument_count == 3:
         question3_3()
     elif argument_count == 4:
-        raise NotImplementedError()
+        question3_4()
     else:
         print("Invalid argument count")
 
