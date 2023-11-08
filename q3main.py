@@ -1,11 +1,14 @@
 import numpy as np
 import pandas as pd
 import sys
+import os
+from dotenv import load_dotenv
 
 from naive_bayes3_2 import NaiveBayes2
 from naive_bayes3_3 import NaiveBayes3
 from naive_bayes3_4 import NaiveBayes4
 
+load_dotenv()
 
 def get_features(csv_path: str) -> np.ndarray:
     input_data = pd.read_csv(csv_path, delimiter=" ").to_numpy()
@@ -17,12 +20,21 @@ def get_labels(csv_path: str) -> np.ndarray:
     return input_data
 
 
-y_train_csv_path = 'dataset/y_train.csv'
-y_test_csv_path = 'dataset/y_test.csv'
+def get_env_var(var_name: str) -> str:
+    var = os.environ.get(var_name)
+    if var is None:
+        raise ValueError(f"Environment variable {var_name} is not set")
 
-x_test_csv_path = 'dataset/x_test.csv'
-x_train_csv_path = 'dataset/x_train.csv'
+    return var
 
+
+y_train_csv_path = get_env_var('Y_TRAIN_CSV_PATH')
+y_test_csv_path = get_env_var('Y_TEST_CSV_PATH')
+
+x_test_csv_path = get_env_var('X_TEST_CSV_PATH')
+x_train_csv_path = get_env_var('X_TRAIN_CSV_PATH')
+
+print("Loading datasets...")
 y_train = get_labels(y_train_csv_path)
 x_train = get_features(x_train_csv_path)
 
@@ -39,6 +51,7 @@ def question_3_2():
 
     print(f"Question3.2 accuracy: {error_rate}")
 
+
 def question3_3():
     naive_bayes3_3 = NaiveBayes3(a=1)
     naive_bayes3_3.fit(x_train, y_train)
@@ -53,6 +66,7 @@ def question3_4():
     error_rate = naive_bayes3_4.test(x_test, y_test)
 
     print(f"Question3.4 accuracy: {error_rate}")
+
 
 def main(argument_count):
     if argument_count == 2:
